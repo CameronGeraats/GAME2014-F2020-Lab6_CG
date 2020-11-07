@@ -10,6 +10,7 @@ public class PlayerBehaviour : MonoBehaviour
     public float joystickVerticalSensitivity;
     public float horizontalForce;
     public float verticalForce;
+    public Transform spawnPoint;
 
     private Rigidbody2D m_rigidBody2D;
     private SpriteRenderer m_spriteRenderer;
@@ -70,5 +71,11 @@ public class PlayerBehaviour : MonoBehaviour
     private void OnCollisionExit2D(Collision2D other)
     {
         isGrounded = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.CompareTag("DeathPlane"))
+            transform.position = spawnPoint.position;
     }
 }
